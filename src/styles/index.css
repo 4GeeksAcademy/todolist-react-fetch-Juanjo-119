@@ -1,11 +1,98 @@
-/* 
+body {
+  background: #f0eada;
+  font-family: 'Courier New', monospace;
+}
 
-    You can write your own styles here...
-    
-    
-    ...Or you can use the import command to include 
-    other sylesheets into your bunde as well, e.j:
-    
-    import 'relative/path/to/stylesheet.scss';
+.app {
+  max-width: 500px;
+  margin: 50px auto;
+  background: #fffef7;
+  padding: 20px;
+  border: 1px solid #e0d9b5;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  border-radius: 8px;
+  position: relative;
+}
 
-*/
+
+.app::after,
+.app::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: -8px;
+  height: 100%;
+  background: #fffef7;
+  border: 1px solid #e0d9b5;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+  z-index: -1;
+}
+
+.app::before {
+  bottom: -16px;
+  left: 20px;
+  right: 20px;
+}
+
+h1 {
+  font-size: 32px;
+  text-align: center;
+  color: #444;
+  margin-bottom: 20px;
+  font-family: 'Shadows Into Light', cursive;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  outline: none;
+  background: transparent;
+}
+
+ul {
+  list-style: none;
+  margin: 20px 0 0;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px dashed #ccc;
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 20px;
+}
+
+li.empty {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+  border-bottom: none;
+}
+
+button {
+  background: none;
+  border: none;
+  color: #d33;
+  cursor: pointer;
+  font-size: 20px;
+  visibility: hidden;
+}
+
+li:hover button {
+  visibility: visible;
+}
+
+.counter {
+  margin-top: 15px;
+  text-align: right;
+  font-size: 14px;
+  color: #666;
+}

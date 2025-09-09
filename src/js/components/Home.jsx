@@ -1,26 +1,48 @@
-import React from "react";
-
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
+import { useState } from "react";
 
 //create your first component
 const Home = () => {
-	return (
-		<div className="text-center">
-            
+	const [todos, setTodos] = useState([]);
+	const [newTodo, setNewTodo] = useState("");
 
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
+	const addTodo = (e) => {
+		e.preventDefault();
+		if (newTodo.trim() === "") return;
+		setTodos([...todos, newTodo]);
+		setNewTodo("");
+	};
+
+	const removeTodo = (index) => {
+		setTodos(todos.filter((_, i) => i !== index));
+	};
+	return (
+		<div className="app">
+			<h1>AGENDA</h1>
+			<form onSubmit={addTodo}>
+				<input
+					type="text"
+					placeholder="Escribe tu nota aquí"
+					value={newTodo}
+					onChange={(e) => setNewTodo(e.target.value)}
+				/>
+			</form>
+
+			<ul>
+				{todos.length === 0 ? (
+					<li className="empty">Añade lo que quieras recordar</li>
+				) : (
+					todos.map((todo, i) => (
+						<li key={i}>
+							<span>{todo}</span>
+							<button onClick={() => removeTodo(i)}>X</button>
+						</li>
+					))
+				)}
+			</ul>
+
+			{todos.length > 0 && (
+				<p>{todos.length} nota{todos.length !== 1 ? "s" : ""} más</p>
+			)}
 		</div>
 	);
 };
