@@ -2,6 +2,10 @@ import { useState } from "react";
 
 //create your first component
 const Home = () => {
+	fetch()
+	.then(()=>{})
+	.then(()=>{})
+	.catch(()=>{})
 	const [todos, setTodos] = useState([]);
 	const [newTodo, setNewTodo] = useState("");
 
