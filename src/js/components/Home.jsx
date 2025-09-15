@@ -6,7 +6,7 @@ const Home = () => {
   const [newTodo, setNewTodo] = useState("");
 
   // Crear usuario y cargar todos
-  useEffect(() => {
+  /*useEffect(() => {
     // Crear usuario si no existe
     fetch(`https://playground.4geeks.com/todo/users/${username}`, {
       method: "POST",
@@ -21,6 +21,24 @@ const Home = () => {
       .then((resp) => resp.json())
       .then((data) => setTodos(data.todos || []))
       .catch((err) => console.error("Error cargando todos:", err));
+  }, []);*/
+
+
+  useEffect(() => {
+    fetch(`https://playground.4geeks.com/todo/users/${username}`)
+      .then(res => {
+        if (res.status === 404 || res.status === 400) {
+          return fetch(`https://playground.4geeks.com/todo/users/${username}`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" }
+          })
+          .then(() => fetch(`https://playground.4geeks.com/todo/users/${username}`))
+        }
+          return res;
+      })
+      .then((resp) => resp.json())
+      .then((data) => setTodos(data.todos || []))
+      .catch((err) => console.error("Error cargando todos:", err))
   }, []);
 
   // Agregar todo
